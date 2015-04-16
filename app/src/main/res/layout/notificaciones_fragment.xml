@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/swipelist_backview"
+        style="@style/ListBackContent"
+        android:layout_width="match_parent"
+        android:background="@color/IndianRed"
+        android:orientation="vertical"
+        android:tag="back">
+
+        <ImageButton
+            android:id="@+id/boton_borrar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:background="@color/transparente"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_papelera" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/swipelist_frontview"
+        style="@style/ListFrontContent"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="center"
+
+        >
+
+        <TextView
+            android:id="@+id/concepto_listgf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:text="@string/conceptoListview"
+
+            />
+
+        <TextView
+            android:id="@+id/importe_listgf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/importeListiView" />
+
+        <TextView
+            android:id="@+id/dias_listagf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="@string/diasNormal" />
+
+        <TextView
+            android:id="@+id/imported_listgf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="right"
+            android:text="@string/importeDia"
+
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mensual"
+        android:title="Mensual" />
+
+    <item
+        android:id="@+id/trimestral"
+        android:title="Trimestral" />
+
+    <item
+        android:id="@+id/anual"
+        android:title="Anual" />
+
+
+</menu>

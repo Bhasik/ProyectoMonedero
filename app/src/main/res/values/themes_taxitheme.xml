@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="TaxiTheme" parent="@style/_TaxiTheme" />
+
+    <style name="_TaxiTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
+        <item name="android:editTextBackground">@drawable/taxitheme_edit_text_holo_light</item>
+
+        <item name="android:listChoiceIndicatorSingle">@drawable/taxitheme_btn_radio_holo_light
+        </item>
+
+        <item name="android:buttonStyle">@style/ButtonTaxiTheme</item>
+
+        <item name="android:imageButtonStyle">@style/ImageButtonTaxiTheme</item>
+
+        <item name="android:dropDownSpinnerStyle">@style/SpinnerTaxiTheme</item>
+
+    </style>
+
+</resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/LightYellow"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="50dp"
+    android:paddingRight="50dp">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menulateral"
+        android:background="@drawable/ic_drawer"/>
+
+    <Button
+        android:id="@+id/movimientos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="@string/movientos" />
+
+    <Button
+        android:id="@+id/gastos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="@string/gastosfijos" />
+
+    <Button
+        android:id="@+id/conceptos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gastos"
+        android:layout_marginBottom="25dp"
+        android:text="@string/conceptoListview" />
+
+    <Button
+        android:id="@+id/resultados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/movimientos"
+        android:layout_marginBottom="25dp"
+        android:text="@string/resultados" />
+
+    <Button
+        android:id="@+id/backup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conceptos"
+        android:layout_marginBottom="25dp"
+        android:text="@string/backup" />
+
+    <Button
+        android:id="@+id/comprar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backup"
+        android:text="@string/comprar" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notificaciones"
+        android:id="@+id/noti"
+        android:layout_gravity="center_horizontal" />
+
+
+
+
+</LinearLayout>

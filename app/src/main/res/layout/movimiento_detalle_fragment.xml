@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/movdetalle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    android:theme="@style/AppTheme">
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+    <TextView
+            android:id="@+id/concepto_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/concepto"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:id="@+id/concepto_edittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="12" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+    <TextView
+            android:id="@+id/tipo_textview_boton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/importe"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/importe_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="12"
+            android:hint="0.0"
+            android:inputType="numberDecimal|numberSigned" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/diastextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fecha"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/dias_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_span="12"
+            android:hint="@string/select_fecha"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hora"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/horaedit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_span="12"
+            android:hint="@string/select_hora"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+    <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/km"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <EditText
+            android:id="@+id/kmedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="12"
+            android:hint="0.0"
+            android:inputType="numberDecimal" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupTipos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_span="12"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioEntrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/entrada"
+                android:layout_weight="8"
+                />
+
+            <RadioButton
+                android:id="@+id/radioSalida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:checked="false"
+                android:text="@string/salida"
+
+                />
+
+        </RadioGroup>
+
+    </TableRow>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/Wheat"
+            android:text="@string/guardar" />
+
+    </RelativeLayout>
+
+
+</TableLayout>

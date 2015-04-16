@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table_concepto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/LessLightYellow"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:shrinkColumns="*"
+    android:stretchColumns="*"
+    android:theme="@style/AppTheme">
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/concepto_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/concepto"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <EditText
+            android:id="@+id/concepto_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_span="17"
+            android:layout_toRightOf="@+id/concepto_textview"
+            android:hint="@string/add_concepto" />
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tipo_textview_boton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tipo"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroupTipos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="17"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioDiario"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:checked="true"
+                android:text="@string/diario"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/radioPeriodico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="@string/periodico"
+                android:textSize="13sp" />
+
+        </RadioGroup>
+
+    </TableRow>
+
+    <TableRow
+        android:gravity="center_vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/dias_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/dias_edittext"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Días:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/dias_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/radioGroupTipos"
+            android:layout_alignStart="@+id/radioGroupTipos"
+            android:layout_below="@+id/radioGroupTipos"
+            android:layout_span="17"
+            android:inputType="number"
+            android:maxLength="4"
+            android:visibility="gone" />
+
+    </TableRow>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:backgroundTint="@color/Wheat"
+            android:text="@string/guardar" />
+
+    </RelativeLayout>
+
+</TableLayout>

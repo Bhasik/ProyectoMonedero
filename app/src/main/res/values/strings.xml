@@ -1,0 +1,155 @@
+<resources>
+
+    <!--app-->
+    <string name="app_name">APP_TAXI</string>
+
+    <!--Genericas-->
+    <string name="actualizar">Actualizar</string>
+    <string name="añadir">Añadir</string>
+    <string name="si">Si</string>
+    <string name="no">No</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <!--Clase Alertas-->
+    <string name="titulo_dialog_backup">BackUp</string>
+    <string name="mensaje_dialog_backUp">¿Desea enviar la copia por correo?</string>
+    <string name="titulo_intent_email">Seleccione una aplicación de envió de Email.</string>
+    <string name="confirmacion_backup">Se ha realizado la copia de seguridad con éxito</string>
+    <string name="borrar_movimientos_asociados">El concepto que desea borrar contiene</string>
+    <string name="borrar_movimientos_asociados_2">movimientos asociados.</string>
+    <string name="tituloDialogAdvertencia">Advertencia</string>
+    <string name="borrarDialgo">Borrar</string>
+    <string name="errorInternet">No tiene conexión a internet, intento más tarde.</string>
+    <string name="errorServidor">Error al conectar con el servidor, inténtelo más tarde. Lamentamos las molestias.</string>
+    <string name="tituloDialogError">Error</string>
+    <string name="mensajeDialogNuevoElemento">Ha creado un nuevo</string>
+    <string name="tituloDialogInsertar">Insertar</string>
+    <string name="añadirDialog">Añadir más</string>
+    <string name="mensajeDialogSinConceptos">No tienes ningún concepto, ¿Quieres crear uno nuevo?.</string>
+    <string name="mensajeDialogErrorCampos">Se deben rellenar todos los campos.</string>
+    <string name="mensajeDialogModificar">Ha modificado el</string>
+    <string name="mensajeDialogErrorFechaInforme">No hay movimientos entre esas fechas , seleccione otras</string>
+    <string name="mensajeDialogRegistro">Se ha registrado exitosamente</string>
+    <string name="tituloDialogRegistro">Registro</string>
+    <string name="mensajeDialogSalirAplicacion">Volvera al login de la aplicacion. ¿Desea continuar?</string>
+    <string name="mensajeDialogNecesitaComprar">Para usar esta funcionalida, necesita tener la aplicacion completa.</string>
+
+
+    <!--Clase Movimientos-->
+    <string name="filtrarMes">Filtrando mensualmente...</string>
+    <string name="filtrarTrimestral">Filtrando trimestralmente...</string>
+    <string name="filtrarAnual">Filtrando anualmente...</string>
+
+    <!--Clase Login-->
+    <string name="corretLogin">Ha iniciado sesión correctamente.</string>
+    <string name="failLogin">Ha habido algún error , compruebe su usuario/contraseña.</string>
+    <string name="comprado">Ha realizado la compra correctamente.</string>
+    <string name="noComprado">Ha habido un error en la compra, inténtelo más tarde.</string>
+    <string name="registrado">Se ha registrado satisfactoriamente.</string>
+    <string name="noRegistrado">Ya está registrado.</string>
+
+    <!--Clase Reporte-->
+    <string name="informe">Realizando informe...</string>
+
+
+    <!--Clase CrearPDF-->
+    <string name="fechaInicialPDF">Fecha Inicial:</string>
+    <string name="fechaFinalPDF">Fecha Final:</string>
+    <string name="kmsInicialesPDF">Kms. Iniciales:</string>
+    <string name="kmsFinalesPDF">Kms. Finales:</string>
+    <string name="kmsRecorridosPDF">Kms. Recorridos:</string>
+    <string name="numeroDiasPDF">Numero dias:</string>
+
+    <string name="tipoPDF">Tipo</string>
+    <string name="conceptoPDF">Concepto</string>
+    <string name="importeFijoPDF">Importe Fijo(€)</string>
+    <string name="diasPeriodoPDF">Dias Periodo</string>
+    <string name="importeDiaPDF">Importe Dia(€)</string>
+    <string name="importePeriodoPDF">Importe Periodo(€)</string>
+    <string name="numeroOpsPDF">Nº Ops</string>
+    <string name="porDiaPDF">Por Dia(€)</string>
+    <string name="porKmPDF">Por Km(€)</string>
+
+    <string name="totalPeriodoPDF">Total por periodo:</string>
+    <string name="totalDiaPDF">Total por dia:</string>
+    <string name="totalKmPDF">Total por kms:</string>
+
+
+    <!--Layouts-->
+    <string name="insert_cuenta">Cuenta</string>
+    <string name="insert_password">Password</string>
+    <string name="select_fecha">Seleccionar Fecha</string>
+    <string name="select_hora">Seleccionar Hora</string>
+    <string name="add_concepto">Añadir Concepto</string>
+    <string name="borrar">Borrar</string>
+    <string name="login">Login</string>
+    <string name="concepto">Concepto:</string>
+    <string name="tipo">Tipo:</string>
+    <string name="diario">Diario</string>
+    <string name="periodico">Periódico</string>
+    <string name="guardar">Guardar</string>
+    <string name="conceptoListview">Concepto</string>
+    <string name="tipoListview">Tipo</string>
+    <string name="comprar">Comprar</string>
+    <string name="registrarse">Resgitrarse</string>
+    <string name="correo">Correo:</string>
+    <string name="password">Password:</string>
+    <string name="cuenta">Cuenta:</string>
+    <string name="backup">BackUp</string>
+    <string name="gastosfijos">Gastos Fijos</string>
+    <string name="resultados">Resultados</string>
+    <string name="movientos">Movimientos</string>
+    <string name="importe">Importe:</string>
+    <string name="importeListiView">Importe</string>
+    <string name="fecha">Fecha:</string>
+    <string name="fechaListView">Fecha</string>
+    <string name="hora">Hora:</string>
+    <string name="horaListView">Hora</string>
+    <string name="km">Km:</string>
+    <string name="entrada">Entrada</string>
+    <string name="salida">Salida</string>
+    <string name="dias">Dias:</string>
+    <string name="diasNormal">Dias</string>
+    <string name="importeDia">Imp.Dia</string>
+    <string name="usuario">Usuario:</string>
+    <string name="dFechaInforme">Fecha Inicio:</string>
+    <string name="hFechaInforme">Fecha Final:</string>
+    <string name="crearInforme">Crear Informe</string>
+    <string name="visualizarInforme">Visualizar Informe</string>
+    <string name="enviarInforme">Enviar Informe</string>
+
+
+    <!--Librerias nineoldandroids-->
+    <string name="open">Open</string>
+    <string name="googlePlay">Google Play</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="cantOpen">Can\'t open this application</string>
+    <string name="settings">Settings</string>
+    <string name="mode">Swipe Mode</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="both">Both</string>
+    <string name="leftAction">Left Action</string>
+    <string name="reveal">Reveal</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="choice">Choice</string>
+    <string name="rightAction">Right Action</string>
+    <string name="rightOffset">Right Offset (%1$s dp)</string>
+    <string name="leftOffset">Left Offset (%1$s dp)</string>
+    <string name="dp">dp</string>
+    <string name="animationTime">Animation Time (Default: 0)</string>
+    <string name="milliseconds">Milliseconds</string>
+    <string name="openOnLongPress">Open On Long Press</string>
+    <string name="about">About</string>
+    <string name="aboutMessage">This is just a simple demo for the Open Source SwipeListView Android Library by 47 Degrees. Find all source, documentation and packaged downloads at GitHub. Cheers!</string>
+    <string name="ok">OK</string>
+    <string name="visit47">Visit 47deg</string>
+    <string name="goToGitHub">Go to GitHub</string>
+    <string name="dontShow">Don\'t show this message again</string>
+    <string name="others">Others</string>
+    <string name="loading">Loading</string>
+    <string name="newTag">New!</string>
+    <string name="discard">Discard</string>
+
+</resources>
