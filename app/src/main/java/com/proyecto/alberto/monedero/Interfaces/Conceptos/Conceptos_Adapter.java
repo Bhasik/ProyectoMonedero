@@ -1,7 +1,7 @@
 package com.proyecto.alberto.monedero.Interfaces.Conceptos;
 
-import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class Conceptos_Adapter extends ArrayAdapter {
 
-    private Activity context;
+    private FragmentActivity context;
     private View view;
     private LayoutInflater inflater;
 
@@ -53,7 +53,7 @@ public class Conceptos_Adapter extends ArrayAdapter {
     private boolean order_nombre_desc = false;
     private boolean order_tipo_desc = false;
 
-    public Conceptos_Adapter(Activity context, Conceptos conceptos) {
+    public Conceptos_Adapter(FragmentActivity context, Conceptos conceptos) {
         super(context, R.layout.concepto_listview, conceptos.getConceptos_list());
 
         this.context = context;
@@ -191,12 +191,12 @@ public class Conceptos_Adapter extends ArrayAdapter {
      */
     public class ComprobarMovimientos extends AsyncTask<Integer, Void, Integer> {
 
-        private Activity context;
+        private FragmentActivity context;
         private Concepto concepto;
         private Usuario usuario;
         private int position;
 
-        public ComprobarMovimientos(Activity context, Concepto concepto, int position) {
+        public ComprobarMovimientos(FragmentActivity context, Concepto concepto, int position) {
 
             this.context = context;
             this.concepto = concepto;

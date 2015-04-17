@@ -189,7 +189,7 @@
     </TableLayout>
 
 
-    <com.incomar.apptaxi.app_taxi.Swipe.SwipeListView
+    <com.proyecto.alberto.monedero.Swipe.SwipeListView
         android:id="@+id/lista_gastofijo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

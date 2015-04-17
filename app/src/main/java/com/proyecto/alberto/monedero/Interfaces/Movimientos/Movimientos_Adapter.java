@@ -1,6 +1,6 @@
 package com.proyecto.alberto.monedero.Interfaces.Movimientos;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.proyecto.alberto.monedero.Gestiones.Alertas;
 import com.proyecto.alberto.monedero.Gestiones.Ordenar;
 import com.proyecto.alberto.monedero.Gestiones.SubProcesosGestion;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class Movimientos_Adapter extends ArrayAdapter implements Filterable {
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
     private LayoutInflater inflater;
 
     //ListView
@@ -42,7 +43,7 @@ public class Movimientos_Adapter extends ArrayAdapter implements Filterable {
 
     private Filter filter;
 
-    public Movimientos_Adapter(Activity context, Movimientos movimientos) {
+    public Movimientos_Adapter(FragmentActivity context, Movimientos movimientos) {
         super(context, R.layout.movimientos_listview, movimientos.getMovimientos_list());
 
         this.context = context;

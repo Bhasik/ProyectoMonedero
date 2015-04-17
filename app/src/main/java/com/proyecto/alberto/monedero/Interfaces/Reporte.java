@@ -1,10 +1,10 @@
 package com.proyecto.alberto.monedero.Interfaces;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +33,7 @@ public class Reporte extends Fragment implements View.OnClickListener {
     public static String TAG_FRAGMENT = "INFORME";
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private DatePickerDialog datePickerdialogFechaInicio;
     private DatePickerDialog datePickerdialogFechaFin;

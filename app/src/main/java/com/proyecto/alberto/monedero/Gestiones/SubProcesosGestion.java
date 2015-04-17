@@ -1,9 +1,9 @@
 package com.proyecto.alberto.monedero.Gestiones;
 
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.itextpdf.text.DocumentException;
@@ -70,9 +70,9 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
     public static int COMPRA = 5001;
 
     //CLASES
-    private Activity context;
+    private FragmentActivity context;
     private Fragment fragment;
-    private Usuario usuario;
+    //private Usuario usuario;
     private Concepto concepto;
     private Movimiento movimiento;
 
@@ -93,6 +93,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
     private boolean error = false;
     private boolean conexion = true;
     private boolean correcto;
+    Usuario usuario = new Usuario("a","1234");
 
     /**
      * Contructor para procesos que requieran un Fragment y un Acitivity
@@ -101,7 +102,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param context
      * @param subproceso
      */
-    public SubProcesosGestion(Fragment fragment, Activity context, int subproceso) {
+    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso) {
 
         this.fragment = fragment;
         this.context = context;
@@ -119,7 +120,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param subproceso
      * @param correo
      */
-    public SubProcesosGestion(Fragment fragment, Activity context, int subproceso, String correo) {
+    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso, String correo) {
 
         this.fragment = fragment;
         this.context = context;
@@ -137,7 +138,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param subproceso
      * @param posicion
      */
-    public SubProcesosGestion(Fragment fragment, Activity context, int subproceso, int posicion) {
+    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso, int posicion) {
 
         this.fragment = fragment;
         this.context = context;
@@ -154,7 +155,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param concepto
      * @param subproceso
      */
-    public SubProcesosGestion(Activity context, Concepto concepto, int subproceso) {
+    public SubProcesosGestion(FragmentActivity context, Concepto concepto, int subproceso) {
 
         this.context = context;
         this.usuario = ((Main_Activity) context).getUsuario();
@@ -170,7 +171,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param movimiento
      * @param subproceso
      */
-    public SubProcesosGestion(Activity context, Movimiento movimiento, int subproceso) {
+    public SubProcesosGestion(FragmentActivity context, Movimiento movimiento, int subproceso) {
 
         this.context = context;
         this.usuario = ((Main_Activity) context).getUsuario();
@@ -180,7 +181,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
     }
 
 
-    public SubProcesosGestion(Activity context, Fragment fragment, Movimiento movimiento, int subproceso) {
+    public SubProcesosGestion(FragmentActivity context, Fragment fragment, Movimiento movimiento, int subproceso) {
 
         this.context = context;
         this.usuario = ((Main_Activity) context).getUsuario();
@@ -202,7 +203,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
      * @param kms_iniciales
      * @param kms_finales
      */
-    public SubProcesosGestion(Fragment fragment, Activity context, int subproceso, String fecha_inicio, String fecha_fin, String kms_iniciales, String kms_finales) {
+    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso, String fecha_inicio, String fecha_fin, String kms_iniciales, String kms_finales) {
 
         this.fragment = fragment;
         this.context = context;
@@ -574,6 +575,8 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
         nameValuePairs = new ArrayList<>(3);
 
+        Usuario usuario = new Usuario("a","1234");
+
         nameValuePairs.add(new BasicNameValuePair("usuario", usuario.getNombre()));
         nameValuePairs.add(new BasicNameValuePair("password", usuario.getPassword()));
         nameValuePairs.add(new BasicNameValuePair("periodico", String.valueOf(tipo)));
@@ -847,6 +850,8 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
         String resultado;
 
         nameValuePairs = new ArrayList<>(3);
+
+        Usuario usuario = new Usuario("a","1234");
 
         nameValuePairs.add(new BasicNameValuePair("usuario", usuario.getNombre()));
         nameValuePairs.add(new BasicNameValuePair("password", usuario.getPassword()));

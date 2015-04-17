@@ -1,6 +1,6 @@
 package com.proyecto.alberto.monedero.Interfaces.GastoFijo;
 
-import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class GastosFijos_Adapter extends ArrayAdapter {
 
-    private Activity context;
+    private FragmentActivity context;
     private View item;
     private LayoutInflater inflater;
 
@@ -43,7 +43,7 @@ public class GastosFijos_Adapter extends ArrayAdapter {
 
     private Filter filter;
 
-    public GastosFijos_Adapter(Activity context, GastosFijos gastosFijos) {
+    public GastosFijos_Adapter(FragmentActivity context, GastosFijos gastosFijos) {
         super(context, R.layout.gastosfijos_listview, gastosFijos.getGastosfijos_list());
 
         this.context = context;

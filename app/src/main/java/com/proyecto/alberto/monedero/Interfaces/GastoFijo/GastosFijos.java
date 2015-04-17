@@ -1,10 +1,10 @@
 package com.proyecto.alberto.monedero.Interfaces.GastoFijo;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -38,7 +38,7 @@ public class GastosFijos extends Fragment implements View.OnClickListener {
     public static String TAG_FRAGMENT = "GASTOS FIJOS";
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private SwipeListView list;
     private ArrayList<Movimiento> gastosfijos_list;

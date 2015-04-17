@@ -1,9 +1,9 @@
 package com.proyecto.alberto.monedero.Interfaces.Conceptos;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +17,6 @@ import com.proyecto.alberto.monedero.Gestiones.SubProcesosGestion;
 import com.proyecto.alberto.monedero.R;
 import com.proyecto.alberto.monedero.Tablas.Concepto;
 
-
 /**
  * Fragment donde se muestra en detalle un concepto
  */
@@ -25,8 +24,9 @@ public class Conceptos_Detalle extends Fragment implements View.OnClickListener 
 
     public static String TAG_FRAGMENT = "CONCEPTO_DETALLE";
 
+
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private EditText conceptoEdit;
     private RadioButton radioDiario;

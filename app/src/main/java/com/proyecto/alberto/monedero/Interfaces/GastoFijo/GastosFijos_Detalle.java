@@ -1,10 +1,10 @@
 package com.proyecto.alberto.monedero.Interfaces.GastoFijo;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.proyecto.alberto.monedero.Gestiones.Alertas;
 import com.proyecto.alberto.monedero.Gestiones.SubProcesosGestion;
 import com.proyecto.alberto.monedero.R;
@@ -35,7 +36,7 @@ public class GastosFijos_Detalle extends Fragment implements View.OnClickListene
     public static String TAG_FRAGMENT = "GASTOSFIJOS_DETALLE";
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private int posicion = 0;
 

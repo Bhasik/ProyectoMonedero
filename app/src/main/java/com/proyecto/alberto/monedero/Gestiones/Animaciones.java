@@ -1,7 +1,7 @@
 package com.proyecto.alberto.monedero.Gestiones;
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,7 +12,7 @@ import com.proyecto.alberto.monedero.R;
 
 public class Animaciones {
 
-    public static void lupa(Activity context, Fragment fragment, View view) {
+    public static void lupa(FragmentActivity context, Fragment fragment, View view) {
 
         Animation giro;
         Animation desvanecer;
@@ -68,7 +68,7 @@ public class Animaciones {
 
     }
 
-    public static void flecha_izq(Activity context, Fragment fragment, View view) {
+    public static void flecha_izq(FragmentActivity context, Fragment fragment, View view) {
 
         Animation giro;
         Animation desvanecer;

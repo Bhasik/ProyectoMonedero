@@ -1,9 +1,6 @@
 package com.proyecto.alberto.monedero.Gestiones;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +8,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
 import com.proyecto.alberto.monedero.Interfaces.Conceptos.Conceptos;
 import com.proyecto.alberto.monedero.Interfaces.Conceptos.Conceptos_Adapter;
@@ -25,7 +25,7 @@ import java.io.File;
 
 public class Alertas {
 
-    public static void errorConexion(Activity context) {
+    public static void errorConexion(FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(context.getString(R.string.errorServidor))
@@ -38,7 +38,7 @@ public class Alertas {
 
     }
 
-    public static void elementoModificado(final Activity context, String nombre) {
+    public static void elementoModificado(final FragmentActivity context, String nombre) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -59,7 +59,7 @@ public class Alertas {
 
     }
 
-    public static void faltaRellenar(Activity context) {
+    public static void faltaRellenar(FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(context.getString(R.string.mensajeDialogErrorCampos))
@@ -72,7 +72,7 @@ public class Alertas {
 
     }
 
-    public static void ningunConcepto(final Activity context, final Fragment fragment) {
+    public static void ningunConcepto(final FragmentActivity context, final Fragment fragment) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(context.getString(R.string.mensajeDialogSinConceptos))
@@ -86,7 +86,7 @@ public class Alertas {
                 switch (fragment.getClass().getSimpleName()) {
                     case "GastosFijos_Detalle":
 
-                        ft = context.getFragmentManager().beginTransaction();
+                        ft = context.getSupportFragmentManager().beginTransaction();
                         ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
                         ft.replace(R.id.container, new Conceptos(), Conceptos.TAG_FRAGMENT);
                         ft.addToBackStack(((GastosFijos_Detalle) fragment).TAG_FRAGMENT);
@@ -96,7 +96,7 @@ public class Alertas {
 
                     case "Movimientos_Detalle":
 
-                        ft = context.getFragmentManager().beginTransaction();
+                        ft = context.getSupportFragmentManager().beginTransaction();
                         ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
                         ft.replace(R.id.container, new Conceptos(), Conceptos.TAG_FRAGMENT);
                         ft.addToBackStack(((Movimientos_Detalle) fragment).TAG_FRAGMENT);
@@ -123,7 +123,7 @@ public class Alertas {
 
     }
 
-    public static void nuevoElemento(final Activity context, final Fragment fragment, String nombre) {
+    public static void nuevoElemento(final FragmentActivity context, final Fragment fragment, String nombre) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -170,7 +170,7 @@ public class Alertas {
         dialog.show();
     }
 
-    public static boolean haveNetworkConnection(Activity context) {
+    public static boolean haveNetworkConnection(FragmentActivity context) {
 
         boolean haveConnectedWifi = false;
         boolean haveConnectedMobile = false;
@@ -188,7 +188,7 @@ public class Alertas {
         return haveConnectedWifi || haveConnectedMobile;
     }
 
-    public static void errorInternet(final Activity context) {
+    public static void errorInternet(final FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -208,7 +208,7 @@ public class Alertas {
 
     }
 
-    public static void enviarEmail(final Activity context, final String tema) {
+    public static void enviarEmail(final FragmentActivity context, final String tema) {
 
         final String extension;
         final String nombreU = ((Main_Activity) context).getUsuario().getNombre();
@@ -260,7 +260,7 @@ public class Alertas {
 
     }
 
-    public static void alertaConcepto(final Conceptos_Adapter.ComprobarMovimientos conceptos_adapter, final Activity context, final int id_usuario, int veces) {
+    public static void alertaConcepto(final Conceptos_Adapter.ComprobarMovimientos conceptos_adapter, final FragmentActivity context, final int id_usuario, int veces) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(context.getString(R.string.borrar_movimientos_asociados) + " " + veces + " " + context.getString(R.string.borrar_movimientos_asociados_2))
@@ -287,7 +287,7 @@ public class Alertas {
 
     }
 
-    public static void abrirPdf(final Activity context) {
+    public static void abrirPdf(final FragmentActivity context) {
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/informe.pdf");
         Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
@@ -299,7 +299,7 @@ public class Alertas {
 
     }
 
-    public static void errorFechasInforme(final Activity context) {
+    public static void errorFechasInforme(final FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -313,7 +313,7 @@ public class Alertas {
 
     }
 
-    public static void registroUsuario(final Activity context) {
+    public static void registroUsuario(final FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -328,7 +328,7 @@ public class Alertas {
 
     }
 
-    public static void salirAplicacion(final Activity context) {
+    public static void salirAplicacion(final FragmentActivity context) {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -352,7 +352,7 @@ public class Alertas {
 
     }
 
-    public static void necesitaComprar(final Activity context) {
+    public static void necesitaComprar(final FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -366,7 +366,7 @@ public class Alertas {
 
     }
 
-    public static void limiteGratuito(final Activity context) {
+    public static void limiteGratuito(final FragmentActivity context) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 

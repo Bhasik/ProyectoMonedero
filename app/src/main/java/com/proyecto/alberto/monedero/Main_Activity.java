@@ -1,9 +1,7 @@
 package com.proyecto.alberto.monedero;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -13,12 +11,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,8 +30,10 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.proyecto.alberto.monedero.Gestiones.AlarmDeleteFileReceiver;
 import com.proyecto.alberto.monedero.Gestiones.Alertas;
-import com.proyecto.alberto.monedero.Interfaces.Login;
+import com.proyecto.alberto.monedero.Interfaces.Conceptos.Conceptos;
+import com.proyecto.alberto.monedero.Interfaces.GastoFijo.GastosFijos;
 import com.proyecto.alberto.monedero.Interfaces.MenuPrincipal;
+import com.proyecto.alberto.monedero.Interfaces.Movimientos.Movimientos;
 import com.proyecto.alberto.monedero.Tablas.Usuario;
 
 import java.io.File;
@@ -38,18 +43,18 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Main_Activity extends Activity {
+public class Main_Activity extends FragmentActivity {
 
     public static final int ENVIADO = 1001;
     private static final int ID_NOTIFICACION_CREAR = 1;
     private static PendingIntent pendingIntent;
     private Usuario usuario;
     private boolean comprado = false;
-    private FrameLayout main;
     private AdView adView;
     private AdRequest adRequest;
     private NotificationManager nm;
     private boolean inicio;
+    private ViewPager main;
 
     private DrawerLayout drawerLayout;
     private ListView drawer;
@@ -91,15 +96,18 @@ public class Main_Activity extends Activity {
 
         drawer.setOnItemClickListener(new DrawerItemClickListener());
 
-        main = (FrameLayout) findViewById(R.id.container);
+        main = (ViewPager) findViewById(R.id.container);
 
         inicio = true;
 
         if (savedInstanceState == null) {
 
-            getFragmentManager().beginTransaction()
+            /*getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, new Login(), Login.TAG_FRAGMENT)
-                    .commit();
+                    .commit();*/
+
+            ViewPager pager = (ViewPager) findViewById(R.id.container);
+            pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 
         } else {
 
@@ -150,7 +158,7 @@ public class Main_Activity extends Activity {
 
             case 0:
 
-                ft = getFragmentManager().beginTransaction();
+                ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
                 ft.replace(R.id.container, new Opciones(), Opciones.TAG_FRAGMENT);
                 ft.addToBackStack(MenuPrincipal.TAG_FRAGMENT);
@@ -399,6 +407,36 @@ public class Main_Activity extends Activity {
 
         }
     }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int pos) {
+            switch (pos) {
+
+                case 0:
+                    return new GastosFijos();
+                case 1:
+                    return new Conceptos();
+                default:
+                    return new Movimientos();
+
+            }
+
+        }
+
+
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+    }
+
 }
 
 

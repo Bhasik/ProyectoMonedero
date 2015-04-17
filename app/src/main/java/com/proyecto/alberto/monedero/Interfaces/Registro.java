@@ -2,11 +2,11 @@ package com.proyecto.alberto.monedero.Interfaces;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +48,7 @@ public class Registro extends Fragment implements View.OnClickListener {
     private String correoSeleccionado;
 
     private View v;
-    private Activity context;
+    private FragmentActivity context;
 
     //Variables para controlar conexiones
     private boolean error = false;
@@ -144,10 +144,10 @@ public class Registro extends Fragment implements View.OnClickListener {
      */
     class registrarUsuario extends AsyncTask<String, String, String> {
 
-        private Activity context;
+        private FragmentActivity context;
         private boolean correcto;
 
-        registrarUsuario(Activity context) {
+        registrarUsuario(FragmentActivity context) {
 
             this.context = context;
 

@@ -2,13 +2,13 @@ package com.proyecto.alberto.monedero.Interfaces;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +52,7 @@ public class Login extends Fragment implements View.OnClickListener {
     private EditText password;
     //Activity
     private View v;
-    private Activity context;
+    private FragmentActivity context;
     private ImageView fondo_logo;
     private ImageView icono_logo;
     private Button btn_login;
@@ -235,9 +235,9 @@ public class Login extends Fragment implements View.OnClickListener {
     class comprobarLogin extends AsyncTask<String, String, String> {
 
         private int tipo_conexion;
-        private Activity context;
+        private FragmentActivity context;
 
-        comprobarLogin(Activity context) {
+        comprobarLogin(FragmentActivity context) {
 
             this.context = context;
 

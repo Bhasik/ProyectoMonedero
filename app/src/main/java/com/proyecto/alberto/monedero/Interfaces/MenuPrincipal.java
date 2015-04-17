@@ -2,12 +2,12 @@ package com.proyecto.alberto.monedero.Interfaces;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener, Dia
     public static String TAG_FRAGMENT = "MENU PRINCIPAL";
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private Button resultados;
     private Button backup;

@@ -1,11 +1,11 @@
 package com.proyecto.alberto.monedero.Interfaces.Movimientos;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Fragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +41,7 @@ public class Movimientos_Detalle extends Fragment implements View.OnClickListene
     public static String TAG_FRAGMENT = "MOVIMIENTOS_DETALLE";
 
     private View view;
-    private Activity context;
+    private FragmentActivity context;
 
     private int posicion = 0;
 
