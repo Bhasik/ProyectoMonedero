@@ -222,7 +222,7 @@ public class GastosFijos extends Fragment implements View.OnClickListener {
 
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
+
             ft.replace(R.id.container, new GastosFijos_Detalle().newInstance(arguments), GastosFijos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(GastosFijos.TAG_FRAGMENT);
             ft.commit();
@@ -230,7 +230,6 @@ public class GastosFijos extends Fragment implements View.OnClickListener {
         } else {
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
             ft.replace(R.id.container, new GastosFijos_Detalle(), GastosFijos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(GastosFijos.TAG_FRAGMENT);
             ft.commit();

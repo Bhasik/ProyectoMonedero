@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Contenido principal -->
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Adds -->
+        <!-- Adds-->
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
             android:layout_width="match_parent"
@@ -22,14 +20,44 @@
             ads:adSize="BANNER"
             ads:adUnitId="@string/banner_ad_unit_id" />
 
-
         <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/container"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <android.support.v4.view.PagerTabStrip
+                android:id="@+id/pager_tab_strip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="#33b5e5"
+                android:textColor="#fff"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp" />
+
+        </android.support.v4.view.ViewPager>
+
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/fondo_transparante"
+            android:background="@color/negroTransparente"
             />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:id="@+id/conceptos_fragment"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:visibility="gone"
+            android:background="@color/Blue"
+            />
+
+
 
         <!-- Contenido
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,7 +67,11 @@
             android:layout_height="match_parent"
             tools:ignore="MergeRootFrame" /> -->
 
-    </LinearLayout>
+
+
+
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/drawer"

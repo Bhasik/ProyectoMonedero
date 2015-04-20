@@ -16,12 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.proyecto.alberto.monedero.Gestiones.Alertas;
 import com.proyecto.alberto.monedero.Gestiones.Animaciones;
 import com.proyecto.alberto.monedero.Gestiones.SubProcesosGestion;
+import com.proyecto.alberto.monedero.Interfaces.insertarConceptosClass;
 import com.proyecto.alberto.monedero.Main_Activity;
 import com.proyecto.alberto.monedero.R;
 import com.proyecto.alberto.monedero.Swipe.BaseSwipeListViewListener;
@@ -39,6 +41,8 @@ public class Conceptos extends Fragment implements View.OnClickListener {
 
     private View view;
     private FragmentActivity context;
+    private FrameLayout conceptosfrag;
+
 
     private SwipeListView list;
     private ArrayList<Concepto> conceptos_list;
@@ -191,7 +195,19 @@ public class Conceptos extends Fragment implements View.OnClickListener {
 
             case R.id.insertar:
 
-                lanzarConceptos_Detalle(null);
+                ((Main_Activity)context).getConceptosanyadir().setVisibility(View.VISIBLE);
+
+                list.setEnabled(false);
+                list.setClickable(false);
+
+                ((Main_Activity)context).getFondoNegro().setVisibility(View.VISIBLE);
+
+
+                ft = context.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.conceptos_fragment, new insertarConceptosClass(), insertarConceptosClass.TAG_FRAGMENT);
+                ft.addToBackStack(Conceptos.TAG_FRAGMENT);
+                ft.commit();
+
 
                 break;
 
@@ -283,7 +299,6 @@ public class Conceptos extends Fragment implements View.OnClickListener {
             arguments.putInt("dias", conp.getDias());
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
             ft.replace(R.id.container, new Conceptos_Detalle().newInstance(arguments), Conceptos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(Conceptos.TAG_FRAGMENT);
             ft.commit();
@@ -291,7 +306,6 @@ public class Conceptos extends Fragment implements View.OnClickListener {
         } else {
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
             ft.replace(R.id.container, new Conceptos_Detalle(), Conceptos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(Conceptos.TAG_FRAGMENT);
             ft.commit();

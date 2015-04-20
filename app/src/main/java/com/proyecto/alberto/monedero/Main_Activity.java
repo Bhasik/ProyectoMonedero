@@ -18,10 +18,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,7 +33,6 @@ import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.proyecto.alberto.monedero.Gestiones.AlarmDeleteFileReceiver;
-import com.proyecto.alberto.monedero.Gestiones.Alertas;
 import com.proyecto.alberto.monedero.Interfaces.Conceptos.Conceptos;
 import com.proyecto.alberto.monedero.Interfaces.GastoFijo.GastosFijos;
 import com.proyecto.alberto.monedero.Interfaces.MenuPrincipal;
@@ -43,7 +46,14 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Main_Activity extends FragmentActivity {
+/**
+ * Created by Alberto on 19/04/2015.
+ */
+
+public class Main_Activity extends FragmentActivity implements ActionBar.TabListener {
+
+
+    public static String TAG_FRAGMENT = "MAIN_ACTIVIY";
 
     public static final int ENVIADO = 1001;
     private static final int ID_NOTIFICACION_CREAR = 1;
@@ -55,6 +65,10 @@ public class Main_Activity extends FragmentActivity {
     private NotificationManager nm;
     private boolean inicio;
     private ViewPager main;
+    private FrameLayout conceptosanyadir;
+    private ImageView fondoNegro;
+    private ActionBar actionBar;
+    private MyPagerAdapter tabAdapter;
 
     private DrawerLayout drawerLayout;
     private ListView drawer;
@@ -62,6 +76,7 @@ public class Main_Activity extends FragmentActivity {
 
     private SharedPreferences config;
 
+    private String[] tabs = { "Top Rated", "Games", "Movies" };
 
     private IInAppBillingService mService;
 
@@ -78,14 +93,26 @@ public class Main_Activity extends FragmentActivity {
         }
     };
 
+    public FrameLayout getConceptosanyadir() {
+        return conceptosanyadir;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        main = (ViewPager) findViewById(R.id.container);
+        tabAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        actionBar = getSupportActionBar();
 
         drawer = (ListView) findViewById(R.id.drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        conceptosanyadir = (FrameLayout) findViewById(R.id.conceptos_fragment);
+
+        fondoNegro = (ImageView) findViewById(R.id.fondo_transparante);
+
 
 
         //Nueva lista de drawer items
@@ -96,15 +123,15 @@ public class Main_Activity extends FragmentActivity {
 
         drawer.setOnItemClickListener(new DrawerItemClickListener());
 
-        main = (ViewPager) findViewById(R.id.container);
+
 
         inicio = true;
 
         if (savedInstanceState == null) {
 
-            /*getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, new Login(), Login.TAG_FRAGMENT)
-                    .commit();*/
+                /*getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, new Login(), Login.TAG_FRAGMENT)
+                        .commit();*/
 
             ViewPager pager = (ViewPager) findViewById(R.id.container);
             pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -129,25 +156,56 @@ public class Main_Activity extends FragmentActivity {
         config = getSharedPreferences("app_taxi", MODE_PRIVATE);
 
 
-      /*  Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
-        bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+          /*  Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
+            serviceIntent.setPackage("com.android.vending");
+            bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
 
 
-        ArrayList<String> skuList = new ArrayList<>();
-        skuList.add("premium");
+            ArrayList<String> skuList = new ArrayList<>();
+            skuList.add("premium");
 
-        Bundle querySkus = new Bundle();
-        querySkus.putStringArrayList("premium", skuList);
+            Bundle querySkus = new Bundle();
+            querySkus.putStringArrayList("premium", skuList);
 
-        //Esto se debe hacer en un proceso
-        try {
-            Bundle skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }*/
+            //Esto se debe hacer en un proceso
+            try {
+                Bundle skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }*/
+
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        // Adding Tabs
+        for (String tab_name : tabs) {
+            actionBar.addTab(actionBar.newTab().setText(tab_name)
+                    .setTabListener(this));
+        }
+
+        /**
+         * on swiping the viewpager make respective tab selected
+         * */
+        main.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                // on changing the page
+                // make respected tab selected
+                actionBar.setSelectedNavigationItem(position);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
 
     }
+
 
     //ITEMS MENU LATERAL
     private void selectItem(int position) {
@@ -160,7 +218,7 @@ public class Main_Activity extends FragmentActivity {
 
                 ft = getSupportFragmentManager().beginTransaction();
                 ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
-                ft.replace(R.id.container, new Opciones(), Opciones.TAG_FRAGMENT);
+                ft.replace(R.id.container, new Opciones(), TAG_FRAGMENT);
                 ft.addToBackStack(MenuPrincipal.TAG_FRAGMENT);
                 ft.commit();
 
@@ -216,6 +274,10 @@ public class Main_Activity extends FragmentActivity {
 
     public void setComprado(boolean comprado) {
         this.comprado = comprado;
+    }
+
+    public ImageView getFondoNegro() {
+        return fondoNegro;
     }
 
     @Override
@@ -310,18 +372,8 @@ public class Main_Activity extends FragmentActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-
-        if (getFragmentManager().findFragmentById(R.id.container).getClass().getSimpleName().equals("MenuPrincipal")) {
-
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-                Alertas.salirAplicacion(this);
-
-                return true;
-
-            }
-
-        }
+            conceptosanyadir.setVisibility(View.GONE);
+            fondoNegro.setVisibility(View.GONE);
 
         return super.onKeyDown(keyCode, event);
     }
@@ -398,6 +450,23 @@ public class Main_Activity extends FragmentActivity {
         this.inicio = inicio;
     }
 
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+        main.setCurrentItem(tab.getPosition());
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -419,10 +488,15 @@ public class Main_Activity extends FragmentActivity {
             switch (pos) {
 
                 case 0:
+
                     return new GastosFijos();
+
                 case 1:
+
                     return new Conceptos();
+
                 default:
+
                     return new Movimientos();
 
             }
@@ -437,8 +511,6 @@ public class Main_Activity extends FragmentActivity {
         }
     }
 
+
+
 }
-
-
-
-

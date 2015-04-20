@@ -143,6 +143,8 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
     <color name="transparente">#00000000</color>
+    <color name="negroTransparente">#8f000000</color>
+
 
     <!-- Commons -->
     <color name="background_app">#dedede</color>

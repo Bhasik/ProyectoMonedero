@@ -88,7 +88,7 @@ public class MenuPrincipal extends Fragment implements View.OnClickListener, Dia
 
     public void compraEfectuada() {
 
-        ((Main_Activity) context).cargarBanner();
+        //((Main_Activity) context).cargarBanner();
 
         if (((Main_Activity) context).isComprado()) {
 

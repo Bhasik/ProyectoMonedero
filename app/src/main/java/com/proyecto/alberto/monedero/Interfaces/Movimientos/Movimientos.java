@@ -185,7 +185,7 @@ public class Movimientos extends Fragment implements View.OnClickListener {
 
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
+
             ft.replace(R.id.container, new Movimientos_Detalle().newInstance(arguments), Movimientos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(Movimientos.TAG_FRAGMENT);
             ft.commit();
@@ -193,7 +193,6 @@ public class Movimientos extends Fragment implements View.OnClickListener {
         } else {
 
             ft = getFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
             ft.replace(R.id.container, new Movimientos_Detalle(), Movimientos_Detalle.TAG_FRAGMENT);
             ft.addToBackStack(Movimientos.TAG_FRAGMENT);
             ft.commit();
