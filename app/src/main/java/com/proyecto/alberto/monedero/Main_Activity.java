@@ -1,5 +1,6 @@
 package com.proyecto.alberto.monedero;
 
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -18,11 +19,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -102,10 +101,6 @@ public class Main_Activity extends FragmentActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        main = (ViewPager) findViewById(R.id.container);
-        tabAdapter = new MyPagerAdapter(getSupportFragmentManager());
-        actionBar = getSupportActionBar();
-
         drawer = (ListView) findViewById(R.id.drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -122,8 +117,6 @@ public class Main_Activity extends FragmentActivity implements ActionBar.TabList
         drawer.setAdapter(new ListAdapterMenuLateral(this, items));
 
         drawer.setOnItemClickListener(new DrawerItemClickListener());
-
-
 
         inicio = true;
 
@@ -155,32 +148,38 @@ public class Main_Activity extends FragmentActivity implements ActionBar.TabList
 
         config = getSharedPreferences("app_taxi", MODE_PRIVATE);
 
+        main = (ViewPager) findViewById(R.id.container);
+        tabAdapter = new MyPagerAdapter(getSupportFragmentManager());
+        main.setAdapter(tabAdapter);
 
-          /*  Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
-            serviceIntent.setPackage("com.android.vending");
-            bindService(serviceIntent, mServiceConn, Context.BIND_AUTO_CREATE);
+
+        final ActionBar actionBar = getActionBar();
+
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+                main.setCurrentItem(tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+            }
+        };
 
 
-            ArrayList<String> skuList = new ArrayList<>();
-            skuList.add("premium");
-
-            Bundle querySkus = new Bundle();
-            querySkus.putStringArrayList("premium", skuList);
-
-            //Esto se debe hacer en un proceso
-            try {
-                Bundle skuDetails = mService.getSkuDetails(3, getPackageName(), "inapp", querySkus);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }*/
-
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // Adding Tabs
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name)
-                    .setTabListener(this));
+        for (int i = 0; i < 3; i++) {
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText("Tab " + (i + 1))
+                            .setTabListener(tabListener));
         }
 
         /**
@@ -192,7 +191,9 @@ public class Main_Activity extends FragmentActivity implements ActionBar.TabList
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+                getActionBar().setSelectedNavigationItem(position);
+
+
             }
 
             @Override
@@ -451,19 +452,19 @@ public class Main_Activity extends FragmentActivity implements ActionBar.TabList
     }
 
     @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
         main.setCurrentItem(tab.getPosition());
 
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
     }
 
     @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
     }
 
