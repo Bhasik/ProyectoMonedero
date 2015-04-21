@@ -304,7 +304,7 @@ public class Login extends Fragment implements View.OnClickListener {
 
                 Toast.makeText(context, getString(R.string.corretLogin), Toast.LENGTH_SHORT).show();
                 ((Main_Activity) context).setComprado(true);
-                ((Main_Activity) context).cargarBanner();
+                //(Main_Activity) context).cargarBanner();
                 lanzarMenuPrincipal();
 
             } else if (tipo_conexion == 1) {
