@@ -1,5 +1,6 @@
 package com.proyecto.alberto.monedero;
 
+import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
@@ -43,7 +44,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Main_Activity extends FragmentActivity {
+public class Main_Activity extends FragmentActivity  implements ActionBar.TabListener{
 
     public static final int ENVIADO = 1001;
     private static final int ID_NOTIFICACION_CREAR = 1;
@@ -55,6 +56,7 @@ public class Main_Activity extends FragmentActivity {
     private NotificationManager nm;
     private boolean inicio;
     private ViewPager main;
+    private MyPagerAdapter tabAdaptaer;
 
     private DrawerLayout drawerLayout;
     private ListView drawer;
@@ -96,7 +98,49 @@ public class Main_Activity extends FragmentActivity {
 
         drawer.setOnItemClickListener(new DrawerItemClickListener());
 
+        tabAdaptaer = new MyPagerAdapter(getSupportFragmentManager());
+
+        final ActionBar actionBar = getActionBar();
+
+        // Specify that the Home/Up button should not be enabled, since there is no hierarchical
+        // parent.
+            actionBar.setHomeButtonEnabled(false);
+
+
+        // Specify that we will be displaying tabs in the action bar.
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
         main = (ViewPager) findViewById(R.id.container);
+        main.setAdapter(tabAdaptaer);
+
+        main.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                actionBar.setSelectedNavigationItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        for (int i = 0; i < tabAdaptaer.getCount(); i++) {
+            // Create a tab with text corresponding to the page title defined by the adapter.
+            // Also specify this Activity object, which implements the TabListener interface, as the
+            // listener for when this tab is selected.
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(tabAdaptaer.getPageTitle(i))
+                            .setTabListener(this));
+        }
 
         inicio = true;
 
@@ -106,8 +150,8 @@ public class Main_Activity extends FragmentActivity {
                     .replace(R.id.container, new Login(), Login.TAG_FRAGMENT)
                     .commit();*/
 
-            ViewPager pager = (ViewPager) findViewById(R.id.container);
-            pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+           // ViewPager pager = (ViewPager) findViewById(R.id.container);
+           // pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 
         } else {
 
@@ -398,6 +442,23 @@ public class Main_Activity extends FragmentActivity {
         this.inicio = inicio;
     }
 
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+        main.setCurrentItem(tab.getPosition());
+
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
+
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -434,6 +495,11 @@ public class Main_Activity extends FragmentActivity {
         @Override
         public int getCount() {
             return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "Section " + (position + 1);
         }
     }
 
