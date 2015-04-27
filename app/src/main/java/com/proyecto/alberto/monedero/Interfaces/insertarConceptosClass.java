@@ -8,8 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import com.proyecto.alberto.monedero.Gestiones.SubProcesosGestion;
 import com.proyecto.alberto.monedero.R;
 
 /**
@@ -50,7 +50,7 @@ public class insertarConceptosClass extends Fragment implements View.OnClickList
 
             case R.id.btn_anyadir:
 
-                Toast.makeText(context,"Concepto Añadido",Toast.LENGTH_LONG).show();
+                new SubProcesosGestion(this, context, SubProcesosGestion.CONCEPTOS_BAJAR,nombre.getText().toString()).execute();
 
                 break;
 

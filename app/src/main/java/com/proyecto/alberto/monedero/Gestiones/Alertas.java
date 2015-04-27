@@ -87,7 +87,6 @@ public class Alertas {
                     case "GastosFijos_Detalle":
 
                         ft = context.getSupportFragmentManager().beginTransaction();
-                        ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
                         ft.replace(R.id.container, new Conceptos(), Conceptos.TAG_FRAGMENT);
                         ft.addToBackStack(((GastosFijos_Detalle) fragment).TAG_FRAGMENT);
                         ft.commit();
@@ -97,7 +96,6 @@ public class Alertas {
                     case "Movimientos_Detalle":
 
                         ft = context.getSupportFragmentManager().beginTransaction();
-                        ft.setCustomAnimations(R.animator.slide_go_in, R.animator.slide_go_out, R.animator.slide_back_in, R.animator.slide_back_out);
                         ft.replace(R.id.container, new Conceptos(), Conceptos.TAG_FRAGMENT);
                         ft.addToBackStack(((Movimientos_Detalle) fragment).TAG_FRAGMENT);
                         ft.commit();

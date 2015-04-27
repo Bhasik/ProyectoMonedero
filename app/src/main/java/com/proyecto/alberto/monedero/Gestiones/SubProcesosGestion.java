@@ -83,7 +83,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
     private String fecha_fin;
     private String kms_iniciales;
     private String kms_finales;
-    private String correo;
+    private String nombre;
     private ArrayList<Movimiento_PDF> datos;
     private double por_km;
 
@@ -112,21 +112,21 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
     }
 
+
     /**
      * Contructor para procesos que requieran un Fragment, Activity , posicion y el correo
      *
      * @param fragment
      * @param context
      * @param subproceso
-     * @param correo
      */
-    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso, String correo) {
+    public SubProcesosGestion(Fragment fragment, FragmentActivity context, int subproceso, String nombre) {
 
         this.fragment = fragment;
         this.context = context;
         this.usuario = ((Main_Activity) context).getUsuario();
         this.subproceso = subproceso;
-        this.correo = correo;
+        this.nombre = nombre;
 
     }
 
@@ -248,7 +248,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
                 case 1002:
 
-                    bajarConcepto(comprobarClase(fragment));
+                    bajarConcepto();
 
                     break;
 
@@ -260,7 +260,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
                 case 1004:
 
-                    insertarConcepto();
+                    insertarConcepto(nombre);
 
                     break;
 
@@ -551,114 +551,24 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
     }
 
-    private void bajarConcepto(int tipo) {
+    private void bajarConcepto() {
 
-        String address = "http://89.248.107.8:3310/consultas/conceptos.php";
-        List<NameValuePair> nameValuePairs;
+        ArrayList<String> conceptos;
 
-        HttpClient httpClient;
-        HttpPost httpPost;
+        conceptos = ((Main_Activity) context).getBdd_monedero().seleccionarConceptos();
 
-        HttpParams httpParameters = new BasicHttpParams();
+        for (int i = 0 ; i<conceptos.size();i++){
 
-        int timeoutConnection = 3000;
-        HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
+            concepto = new Concepto();
 
-        int timeoutSocket = 5000;
-        HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+            Log.v("Aqui entro 2",conceptos.get(i));
+            concepto.setNombre(conceptos.get(i));
 
-        httpClient = new DefaultHttpClient(httpParameters);
-        httpPost = new HttpPost(address);
-        HttpResponse response;
-
-        String resultado;
-
-        nameValuePairs = new ArrayList<>(3);
-
-        Usuario usuario = new Usuario("a","1234");
-
-        nameValuePairs.add(new BasicNameValuePair("usuario", usuario.getNombre()));
-        nameValuePairs.add(new BasicNameValuePair("password", usuario.getPassword()));
-        nameValuePairs.add(new BasicNameValuePair("periodico", String.valueOf(tipo)));
-
-        try {
-
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-            response = httpClient.execute(httpPost);
-            HttpEntity entity = response.getEntity();
-            InputStream is = entity.getContent();
-            resultado = convertStreamToString(is);
-
-            if (!resultado.equals("")) {
-
-                JSONObject json;
-
-                try {
-
-                    json = new JSONObject(resultado);
-                    JSONArray jsonArray = json.optJSONArray("conceptos");
-
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        Concepto concepto = new Concepto();
-
-                        JSONObject jsonArrJsonChild = jsonArray.getJSONObject(i);
-                        concepto.setId(jsonArrJsonChild.optInt("id"));
-                        concepto.setNombre(jsonArrJsonChild.optString("nombre"));
-                        concepto.setDias(jsonArrJsonChild.optInt("dias"));
-
-                        int periodico = jsonArrJsonChild.optInt("periodico");
-
-                        if (periodico == 0) {
-                            concepto.setPeriodico(false);
-                        } else {
-                            concepto.setPeriodico(true);
-                        }
-
-                        switch (fragment.getClass().getSimpleName()) {
-
-                            case "Movimientos_Detalle":
-
-                                ((Movimientos_Detalle) fragment).getConceptos_list().add(concepto);
-
-                                break;
-
-                            case "GastosFijos_Detalle":
-
-                                ((GastosFijos_Detalle) fragment).getConceptos_list().add(concepto);
-
-                                break;
-
-                            case "Conceptos":
-
-                                ((Conceptos) fragment).getConceptos_list().add(concepto);
-
-                                break;
-
-                        }
-
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        } catch (ClientProtocolException e) {
-
-            e.printStackTrace();
-
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            error = true;
+            ((Conceptos) fragment).getConceptos_list().add(concepto);
 
         }
+
+
 
     }
 
@@ -710,64 +620,10 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
 
     }
 
-    private void insertarConcepto() {
+    private void insertarConcepto(String nombre) {
 
-        String address = "http://89.248.107.8:3310/consultas/insertarConcepto.php";
-        List<NameValuePair> nameValuePairs;
-        String request;
+       ((Main_Activity) context).getBdd_monedero().insertarDatos("conceptos",nombre);
 
-        HttpClient httpClient;
-        HttpPost httpPost;
-
-        HttpParams httpParameters = new BasicHttpParams();
-
-        int timeoutConnection = 3000;
-        HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-
-        int timeoutSocket = 5000;
-        HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
-
-        httpClient = new DefaultHttpClient(httpParameters);
-        httpPost = new HttpPost(address);
-
-        nameValuePairs = new ArrayList<>(5);
-
-        nameValuePairs.add(new BasicNameValuePair("usuario", usuario.getNombre().trim()));
-        nameValuePairs.add(new BasicNameValuePair("password", usuario.getPassword().trim()));
-        nameValuePairs.add(new BasicNameValuePair("nombre", concepto.getNombre().trim()));
-
-        if (concepto.isPeriodico()) {
-
-            nameValuePairs.add(new BasicNameValuePair("periodico", String.valueOf(1).trim()));
-
-        } else {
-
-            nameValuePairs.add(new BasicNameValuePair("periodico", String.valueOf(0).trim()));
-
-        }
-
-        nameValuePairs.add(new BasicNameValuePair("dias", String.valueOf(concepto.getDias()).trim()));
-
-
-        try {
-
-            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
-            request = httpClient.execute(httpPost, responseHandler);
-
-        } catch (ClientProtocolException e) {
-
-            e.printStackTrace();
-
-        } catch (UnsupportedEncodingException e) {
-
-            e.printStackTrace();
-
-        } catch (IOException e) {
-
-            error = true;
-
-        }
 
     }
 
@@ -1297,7 +1153,7 @@ public class SubProcesosGestion extends AsyncTask<Integer, Void, Void> {
         nameValuePairs = new ArrayList<>(3);
         nameValuePairs.add(new BasicNameValuePair("usuario", usuario.getNombre()));
         nameValuePairs.add(new BasicNameValuePair("password", usuario.getPassword()));
-        nameValuePairs.add(new BasicNameValuePair("correo", correo));
+        //nameValuePairs.add(new BasicNameValuePair("correo", correo));
 
 
         try {

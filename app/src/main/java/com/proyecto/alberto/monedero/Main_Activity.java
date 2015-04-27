@@ -23,6 +23,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -57,6 +59,13 @@ public class Main_Activity extends FragmentActivity  implements ActionBar.TabLis
     private boolean inicio;
     private ViewPager main;
     private MyPagerAdapter tabAdaptaer;
+    private FrameLayout conceptosanayadir;
+    private ImageView fondonegro;
+
+    private BDMonedero bdd_monedero;
+    public static int version=2;
+
+
 
     private DrawerLayout drawerLayout;
     private ListView drawer;
@@ -88,6 +97,9 @@ public class Main_Activity extends FragmentActivity  implements ActionBar.TabLis
 
         drawer = (ListView) findViewById(R.id.drawer);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        conceptosanayadir = (FrameLayout) findViewById(R.id.conceptos_fragment);
+        fondonegro = (ImageView) findViewById(R.id.fondo_transparante);
 
 
         //Nueva lista de drawer items
@@ -190,7 +202,7 @@ public class Main_Activity extends FragmentActivity  implements ActionBar.TabLis
         } catch (RemoteException e) {
             e.printStackTrace();
         }*/
-
+        bdd_monedero = new BDMonedero(this, 2);
     }
 
     //ITEMS MENU LATERAL
@@ -260,6 +272,18 @@ public class Main_Activity extends FragmentActivity  implements ActionBar.TabLis
 
     public void setComprado(boolean comprado) {
         this.comprado = comprado;
+    }
+
+    public ImageView getFondonegro() {
+        return fondonegro;
+    }
+
+    public FrameLayout getConceptosanayadir() {
+        return conceptosanayadir;
+    }
+
+    public BDMonedero getBdd_monedero() {
+        return bdd_monedero;
     }
 
     @Override
@@ -458,6 +482,8 @@ public class Main_Activity extends FragmentActivity  implements ActionBar.TabLis
     public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction fragmentTransaction) {
 
     }
+
+
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override

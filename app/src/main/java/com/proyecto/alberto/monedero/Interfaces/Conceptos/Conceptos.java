@@ -18,6 +18,7 @@ import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.proyecto.alberto.monedero.Gestiones.Alertas;
@@ -60,6 +61,7 @@ public class Conceptos extends Fragment implements View.OnClickListener {
     private ImageButton nomasc;
     private ImageButton importedesc;
     private ImageButton importeasc;
+    private ImageView fondonegro;
 
     private FragmentTransaction ft;
 
@@ -83,6 +85,7 @@ public class Conceptos extends Fragment implements View.OnClickListener {
         flecha_izq = (ImageButton) view.findViewById(R.id.flecha_izq);
         caja_busqueda = (EditText) view.findViewById(R.id.caja_busqueda);
         limpiar_edit = (ImageButton) view.findViewById(R.id.borraredit_icono);
+        fondonegro = (ImageView) ((Main_Activity) context).findViewById(R.id.fondo_transparante);
 
         nomasc = (ImageButton) view.findViewById(R.id.nomasc);
         nomdesc = (ImageButton) view.findViewById(R.id.nomdesc);
@@ -92,6 +95,8 @@ public class Conceptos extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.insertar).setOnClickListener(this);
         view.findViewById(R.id.concepto_textview_boton).setOnClickListener(this);
         view.findViewById(R.id.tipo_textview_boton).setOnClickListener(this);
+        fondonegro.setOnClickListener(this);
+
 
         ((Main_Activity)context).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
@@ -195,12 +200,12 @@ public class Conceptos extends Fragment implements View.OnClickListener {
 
             case R.id.insertar:
 
-                ((Main_Activity)context).getConceptosanyadir().setVisibility(View.VISIBLE);
+                ((Main_Activity)context).getConceptosanayadir().setVisibility(View.VISIBLE);
 
                 list.setEnabled(false);
                 list.setClickable(false);
 
-                ((Main_Activity)context).getFondoNegro().setVisibility(View.VISIBLE);
+                ((Main_Activity)context).getFondonegro().setVisibility(View.VISIBLE);
 
 
                 ft = context.getSupportFragmentManager().beginTransaction();
@@ -277,6 +282,17 @@ public class Conceptos extends Fragment implements View.OnClickListener {
 
                 caja_busqueda.setText("");
                 limpiar_edit.setImageResource(R.drawable.boton_borrar_caja);
+
+                break;
+
+            case R.id.fondo_transparante:
+
+                ((Main_Activity)context).getConceptosanayadir().setVisibility(View.GONE);
+
+                list.setEnabled(true);
+                list.setClickable(true);
+
+                ((Main_Activity)context).getFondonegro().setVisibility(View.GONE);
 
                 break;
 
